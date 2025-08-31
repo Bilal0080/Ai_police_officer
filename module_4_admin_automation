@@ -1,0 +1,33 @@
+elif app_mode == "Admin Automation":
+    st.header("Administrative Automation")
+    st.success("This tool saves officers hours of paperwork by generating draft reports from voice transcripts.")
+
+    incident_type = st.selectbox("Incident Type", ("Traffic Stop", "Disturbance", "Theft", "Wellness Check"))
+    officer_id = st.text_input("Officer Badge #", "OX-123")
+    date_time = st.datetime_input("Incident Date/Time", datetime.now())
+
+    # Voice transcription simulation
+    audio_bytes = st.audio("https://www.soundjay.com/buttons/sounds/beep-07a.wav", format="audio/wav")
+    transcript = st.text_area("Transcribed Voice Notes", "Pulled over vehicle for speeding. License plate ABC123. Driver was cooperative. Database check revealed an outstanding warrant. Proceeded with caution and made a safe arrest.")
+
+    if st.button("Generate Report Draft"):
+        with st.spinner('A.I.O. is drafting your report...'):
+            tm.sleep(3)
+        st.balloons()
+
+        st.subheader("A.I.O. Generated Report Draft")
+        report_text = f"""
+        **INCIDENT REPORT - {incident_type.upper()}**
+        **Officer:** {officer_id}
+        **Date/Time:** {date_time}
+
+        **Narrative:**
+        Officer initiated a traffic stop for a speeding violation at approximately [LOCATION]. The vehicle, license plate ABC123, was stopped without incident.
+        A routine database check indicated the registered owner had an active outstanding warrant ([WARRANT #]).
+        The driver, [DRIVER NAME], was informed of the warrant. The subject was compliant and taken into custody without resistance.
+        The vehicle was impounded pursuant to department policy.
+
+        **Actions Taken:** Issued citation for speeding. Executed arrest on active warrant.
+        """
+        st.write(report_text)
+        st.download_button('Download Report Draft', report_text, file_name=f"incident_report_{date_time.date()}.txt")

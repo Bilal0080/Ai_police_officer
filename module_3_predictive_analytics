@@ -1,0 +1,29 @@
+elif app_mode == "Predictive Analytics":
+    st.header("Predictive Crime Hotspot Forecasting")
+    st.warning("This is a simulation based on historical data patterns. Actual crime is unpredictable.")
+
+    # Generate synthetic data for a map
+    date = st.date_input("Select a date for prediction", datetime.now())
+    hours = st.slider("Hour of day", 0, 23, 12)
+
+    num_points = 50
+    hot_spot_lat = 37.77
+    hot_spot_lon = -122.41
+
+    # Create data clustered around a "hotspot"
+    lat_data = [hot_spot_lat + random.normalvariate(0, 0.01) for _ in range(num_points)]
+    lon_data = [hot_spot_lon + random.normalvariate(0, 0.01) for _ in range(num_points)]
+    weight_data = [np.random.gamma(2) for _ in range(num_points)] # Simulate "risk intensity"
+
+    heat_df = pd.DataFrame({'lat': lat_data, 'lon': lon_data, 'weight': weight_data})
+
+    # Create the heatmap
+    fig = px.density_mapbox(heat_df, lat='lat', lon='lon', z='weight',
+                            radius=20, center=dict(lat=hot_spot_lat, lon=hot_spot_lon), zoom=12,
+                            mapbox_style="stamen-toner")
+    fig.update_layout(title="Predicted Crime Risk Heatmap")
+    st.plotly_chart(fig, use_container_width=True)
+
+    st.markdown("**Recommended Patrol Allocation:**")
+    st.progress(75)
+    st.caption("Increase patrols in the **downtown core** between 20:00 and 02:00.")

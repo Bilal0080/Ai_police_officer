@@ -1,0 +1,15 @@
+st.set_page_config(
+    page_title="A.I.O. - Police Dashboard",
+    page_icon="👮‍♂️",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# Main title and introduction
+st.title("👮‍♂️ A.I.O. - Augmented Intelligence Operator")
+st.markdown("---")
+st.markdown("""
+    **Welcome to the A.I.O. Command Dashboard.**
+    This simulation demonstrates how AI can augment police work, improving efficiency, officer safety, and community relations.
+    Select a module from the sidebar to begin.
+""")

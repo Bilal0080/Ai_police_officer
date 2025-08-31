@@ -1,0 +1,43 @@
+elif app_mode == "Real-Time Analysis":
+    st.header("Real-Time Analysis Simulator")
+    st.info("This module simulates real-time video and data analysis from an officer's bodycam and cruiser.")
+
+    uploaded_file = st.file_uploader("Upload a traffic scene image (or use live demo)", type=['jpg', 'png', 'jpeg'])
+
+    if uploaded_file is not None or st.button("Use Demo Image"):
+        # Display the image
+        if uploaded_file:
+            st.image(uploaded_file, caption="Live Feed Analysis", use_column_width=True)
+        else:
+            # You can provide a path to a default image if needed
+            st.image("https://placekitten.com/700/400", caption="Demo Live Feed Analysis", use_column_width=True)
+
+        # Simulate AI analysis
+        with st.spinner('A.I.O. is analyzing feed...'):
+            tm.sleep(2)
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.subheader("Detected Objects")
+            object_df = pd.DataFrame({
+                'Object': ['Vehicle', 'License Plate', 'Person', 'Traffic Light', 'Road Sign'],
+                'Confidence': ['98%', '99%', '95%', '100%', '92%'],
+                'Status': ['Normal', 'Warrant Found', 'Normal', 'Green', 'Stop Sign']
+            })
+            st.dataframe(object_df, hide_index=True)
+
+        with col2:
+            st.subheader("Database Cross-Reference")
+            st.success("✅ License Plate: **ABC123**")
+            st.error("🚨 ALERT: Vehicle owner has an **outstanding warrant** for a minor traffic violation.")
+            st.warning("⚠️ Recommendation: Proceed with caution. Verify warrant details. Prepare for potential stop.")
+
+        # Simulate de-escalation guidance
+        st.subheader("De-escalation Guidance")
+        st.info("""
+        **A.I.O. Interaction Analysis:**
+        - Officer's tone measured at 72% calm.
+        - Subject's vocal stress is elevated (65%).
+        **Suggested Prompt:** *"I understand this is frustrating. I just need to see your license and registration to resolve this quickly."*
+        """)

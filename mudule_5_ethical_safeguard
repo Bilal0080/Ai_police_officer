@@ -1,0 +1,45 @@
+elif app_mode == "Ethical Safeguards":
+    st.header("Ethical Safeguards & Transparency")
+    st.markdown("""
+    The A.I.O. system is built on a foundation of ethical principles to ensure fairness, accountability, and protect civil liberties.
+    """)
+
+    tab1, tab2, tab3, tab4 = st.tabs(["Bias Audit", "Explainability", "Data Privacy", "Human-in-the-Loop"])
+
+    with tab1:
+        st.subheader("Algorithmic Bias Audit")
+        st.info("Last Audit: **2023-11-15** | Status: **PASS**")
+        audit_data = pd.DataFrame({
+            'Demographic': ['Race A', 'Race B', 'Race C', 'Income Bracket 1', 'Income Bracket 2'],
+            'False Positive Rate': ['2.1%', '2.3%', '2.0%', '2.4%', '1.9%'],
+            'Recommendation Disparity': ['0.5%', '0.7%', '0.4%', '0.6%', '0.3%']
+        })
+        st.dataframe(audit_data, hide_index=True)
+        st.caption("A.I.O. is continuously audited for discriminatory outcomes across demographics.")
+
+    with tab2:
+        st.subheader("Explainability (XAI)")
+        st.image("https://miro.medium.com/v2/resize:fit:1400/1*_0eFbTGW0f7OqNM9fFHRZw.png", width=400)
+        st.markdown("""
+        Every recommendation comes with a clear rationale.
+        *   **Example:** "Vehicle flagged because plate **XYZ789** matches a vehicle reported stolen in database [DB-STOLEN-VEHICLES-04]."
+        """)
+
+    with tab3:
+        st.subheader("Data Privacy Dashboard")
+        st.metric("Data Retention", "30 Days", "-90% from legacy policy")
+        st.progress(30)
+        st.markdown("""
+        *   **Purpose Limitation:** Data is only processed for active incidents.
+        *   **Data Minimization:** Only necessary data is collected.
+        *   **Access Logs:** All system access is strictly logged and audited.
+        """)
+
+    with tab4:
+        st.subheader("Human-in-the-Loop Protocol")
+        st.error("""
+        ⚠️ **CRITICAL SYSTEM PROTOCOL** ⚠️
+        The A.I.O. provides **recommendations only**.
+        The final decision and responsibility for any action **ALWAYS** remains with the trained human officer.
+        """)
+        st.image("https://www.researchgate.net/profile/Andre-Meyer-Vitali/publication/342327466/figure/fig1/AS:902611296391169@1592496275810/Human-in-the-loop-model.png", width=300)

@@ -1,0 +1,4 @@
+# Sidebar Navigation
+st.sidebar.title("A.I.O. Modules")
+app_mode = st.sidebar.radio("Choose a Module",
+    ["Dashboard Overview", "Real-Time Analysis", "Predictive Analytics", "Admin Automation", "Ethical Safeguards"])

@@ -1,0 +1,19 @@
+if app_mode == "Dashboard Overview":
+    st.header("Patrol Operations Dashboard")
+
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.metric("Active Patrols", "12", "3")
+    with col2:
+        st.metric("Incidents Today", "27", "-4%")
+    with col3:
+        st.metric("Avg. Response Time", "8.4 min", "1.2 min")
+
+    # Map placeholder
+    st.subheader("Live Patrol Map")
+    map_data = pd.DataFrame({
+        'lat': [37.76 + random.uniform(-0.02, 0.02) for _ in range(12)],
+        'lon': [-122.4 + random.uniform(-0.02, 0.02) for _ in range(12)],
+        'status': ['Available', 'En Route', 'At Scene'][random.randint(0,2)] for _ in range(12)
+    })
+    st.map(map_data, color='status')
